@@ -15,6 +15,7 @@ catkin_package(
 include_directories(include
   ${catkin_INCLUDE_DIRS}
   ${soem_INCLUDE_DIRS}
+  ${soem_INCLUDE_DIRS}/soem
 )
 
 add_library(robotiq_ethercat

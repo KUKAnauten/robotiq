@@ -143,9 +143,9 @@ int main(int argc, char** argv)
     int slave_no;
     bool activate;
 
-    nh.param<std::string>("ifname", ifname, "eth0");
-    nh.param<int>("slave_number", slave_no, 1);
-    nh.param<bool>("activate", activate, true);
+    pnh.param<std::string>("ifname", ifname, "enp3s0");
+    pnh.param<int>("slave_number", slave_no, 1);
+    pnh.param<bool>("activate", activate, true);
 
     // Start ethercat manager
     EtherCatManager manager(ifname);

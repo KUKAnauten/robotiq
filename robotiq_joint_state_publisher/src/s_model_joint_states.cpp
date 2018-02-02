@@ -133,9 +133,9 @@ inline double Robotiq3::scissorJoint() const {
  * Callback function for "SModelRobotInput" topic.
  */
 void Robotiq3::callback(const robotiq_s_model_control::SModel_robot_input::ConstPtr &msg) {
-  finger_left = Finger(msg->gPOA);		// set left finger position
-  finger_right = Finger(msg->gPOB);		// set right finger position
-  finger_middle = Finger(msg->gPOC);		// set middle finger position
+  finger_middle = Finger(msg->gPOA);    // set middle finger position
+  finger_left = Finger(msg->gPOB);		// set left finger position
+  finger_right = Finger(msg->gPOC);		// set right finger position
   scissor = msg->gPOS;				// set scissor position
 
   // Set all the joint values

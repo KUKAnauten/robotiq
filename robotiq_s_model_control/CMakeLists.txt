@@ -43,6 +43,7 @@ generate_dynamic_reconfigure_options(
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
     LIBRARIES ${PROJECT_NAME}
+    INCLUDE_DIRS include
     CATKIN_DEPENDS
         controller_manager
         diagnostic_updater

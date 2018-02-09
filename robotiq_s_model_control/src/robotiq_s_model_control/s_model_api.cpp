@@ -42,6 +42,7 @@ SModelAPI::SModelAPI(boost::shared_ptr<SModelClientBase> base)
 
     //! Get current status
     read();
+
     command_.rACT = status_.gACT;
     command_.rMOD = status_.gMOD;
     command_.rGTO = status_.gGTO;
@@ -101,6 +102,29 @@ void SModelAPI::setForce(const double &fA, const double &fB, const double &fC, c
     command_.rFRS = limit<SModelClientBase::GripperOutput::_rFRS_type>(force_to_ticks_*(fS - force_offset_));
 }
 
+void SModelAPI::setRawPosition(const unsigned char &posA, const unsigned char &posB, const unsigned char &posC, const unsigned char &posS)
+{
+    command_.rPRA = limit<SModelClientBase::GripperOutput::_rPRA_type>(posA);
+    command_.rPRB = limit<SModelClientBase::GripperOutput::_rPRB_type>(posB);
+    command_.rPRC = limit<SModelClientBase::GripperOutput::_rPRC_type>(posC);
+    command_.rPRS = limit<SModelClientBase::GripperOutput::_rPRS_type>(posS);
+}
+
+void SModelAPI::setRawVelocity(const unsigned char &velA, const unsigned char &velB, const unsigned char &velC, const unsigned char &velS)
+{
+    command_.rSPA = limit<SModelClientBase::GripperOutput::_rSPA_type>(velA);
+    command_.rSPB = limit<SModelClientBase::GripperOutput::_rSPB_type>(velB);
+    command_.rSPC = limit<SModelClientBase::GripperOutput::_rSPC_type>(velC);
+    command_.rSPS = limit<SModelClientBase::GripperOutput::_rSPS_type>(velS);
+}
+void SModelAPI::setRawForce(const unsigned char &fA, const unsigned char &fB, const unsigned char &fC, const unsigned char &fS)
+{
+    command_.rFRA = limit<SModelClientBase::GripperOutput::_rFRA_type>(fA);
+    command_.rFRB = limit<SModelClientBase::GripperOutput::_rFRB_type>(fB);
+    command_.rFRC = limit<SModelClientBase::GripperOutput::_rFRC_type>(fC);
+    command_.rFRS = limit<SModelClientBase::GripperOutput::_rFRS_type>(fS);
+}
+ 
 void SModelAPI::setRaw(const SModelClientBase::GripperOutput &raw)
 {
     command_ = raw;
@@ -128,6 +152,22 @@ void SModelAPI::getCurrent(double *curA, double *curB, double *curC, double *cur
     *curB = (double)status_.gCUB/cur_to_ticks_;
     *curC = (double)status_.gCUC/cur_to_ticks_;
     *curS = (double)status_.gCUS/cur_to_ticks_;
+}
+
+void SModelAPI::getRawPosition(unsigned char *posA, unsigned char *posB, unsigned char *posC, unsigned char *posS) const
+{
+    *posA = (unsigned char)status_.gPOA;
+    *posB = (unsigned char)status_.gPOB;
+    *posC = (unsigned char)status_.gPOC;
+    *posS = (unsigned char)status_.gPOS;
+}
+
+void SModelAPI::getRawPositionCmd(unsigned char *posA, unsigned char *posB, unsigned char *posC, unsigned char *posS) const
+{
+    *posA = (unsigned char)status_.gPRA;
+    *posB = (unsigned char)status_.gPRB;
+    *posC = (unsigned char)status_.gPRC;
+    *posS = (unsigned char)status_.gPRS;
 }
 
 void SModelAPI::getGripperStatus(InitializationMode *gACT, GraspingMode *gMOD, ActionMode *gGTO, GripperStatus *gIMC, MotionStatus *gSTA) const
@@ -163,6 +203,14 @@ void SModelAPI::getCommandPos(double *posA, double *posB, double *posC, double *
     *posB = (double)command_.rPRB/pos_to_ticks_ + pos_offset_;
     *posC = (double)command_.rPRC/pos_to_ticks_ + pos_offset_;
     *posS = (double)command_.rPRS/sci_to_ticks_ + sci_offset_;
+}
+
+void SModelAPI::getRawCommandPos(unsigned char *posA, unsigned char *posB, unsigned char *posC, unsigned char *posS) const
+{
+    *posA = (unsigned char)command_.rPRA;
+    *posB = (unsigned char)command_.rPRB;
+    *posC = (unsigned char)command_.rPRC;
+    *posS = (unsigned char)command_.rPRS;
 }
 
 bool SModelAPI::isInitialized()

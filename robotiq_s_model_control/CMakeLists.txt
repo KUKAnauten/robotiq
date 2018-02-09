@@ -67,6 +67,7 @@ add_library(${PROJECT_NAME}
   src/${PROJECT_NAME}/s_model_diagnostics.cpp
   src/${PROJECT_NAME}/s_model_hw_interface.cpp
   src/${PROJECT_NAME}/s_model_ros.cpp
+  src/${PROJECT_NAME}/s_model_msg_client.cpp
 )
 target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}

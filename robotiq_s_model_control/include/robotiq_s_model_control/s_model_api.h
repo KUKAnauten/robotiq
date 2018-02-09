@@ -61,17 +61,23 @@ public:
     void setPosition(const double &posA, const double &posB=0, const double &posC=0, const double &posS=0);
     void setVelocity(const double &velA, const double &velB=0, const double &velC=0, const double &velS=0);
     void setForce(const double &fA, const double &fB=0, const double &fC=0, const double &fS=0);
+    void setRawPosition(const unsigned char &posA, const unsigned char &posB=0, const unsigned char &posC=0, const unsigned char &posS=0);
+    void setRawVelocity(const unsigned char &velA, const unsigned char &velB=0, const unsigned char &velC=0, const unsigned char &velS=0);
+    void setRawForce(const unsigned char &fA, const unsigned char &fB=0, const unsigned char &fC=0, const unsigned char &fS=0);
     void setRaw(const SModelClientBase::GripperOutput &raw);
 
     void getPosition(double *posA, double *posB, double *posC, double *posS) const;
     void getPositionCmd(double *posA, double *posB, double *posC, double *posS) const;
     void getCurrent(double *curA, double *curB, double *curC, double *curS) const;
+    void getRawPosition(unsigned char *posA, unsigned char *posB, unsigned char *posC, unsigned char *posS) const;
+    void getRawPositionCmd(unsigned char *posA, unsigned char *posB, unsigned char *posC, unsigned char *posS) const;
     void getGripperStatus(InitializationMode *gACT,  GraspingMode *gMOD, ActionMode *gGTO, GripperStatus *gIMC, MotionStatus *gSTA) const;
     void getFaultStatus(FaultStatus *gFLT) const;
     void getObjectStatus(ObjectStatus *fA, ObjectStatus *fB, ObjectStatus *fC, ObjectStatus *fS) const;
     void getRaw(SModelClientBase::GripperInput *raw) const;
 
     void getCommandPos(double *posA, double *posB, double *posC, double *posS) const;
+    void getRawCommandPos(unsigned char *posA, unsigned char *posB, unsigned char *posC, unsigned char *posS) const;
 
     bool isInitialized();
     bool isReady();

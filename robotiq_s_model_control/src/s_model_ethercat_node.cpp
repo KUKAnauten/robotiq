@@ -143,7 +143,7 @@ int main(int argc, char** argv)
     int slave_no;
     bool activate;
 
-    pnh.param<std::string>("ifname", ifname, "enp3s0");
+    pnh.param<std::string>("ifname", ifname, "enp2s0");
     pnh.param<int>("slave_number", slave_no, 1);
     pnh.param<bool>("activate", activate, true);
 

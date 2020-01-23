@@ -89,15 +89,6 @@ target_link_libraries(s_model_ethercat_node
    ${catkin_LIBRARIES}
 )
 
-add_executable(s_model_can_node
-  src/${PROJECT_NAME}/s_model_can_client.cpp
-  src/s_model_can_node.cpp
-)
-
-target_link_libraries(s_model_can_node
-  ${PROJECT_NAME}
-  ${catkin_LIBRARIES}
-)
 
 #############
 ## Install ##
@@ -110,7 +101,7 @@ install(PROGRAMS nodes/SModelSimpleController.py nodes/SModelStatusListener.py
 	nodes/SModelTcpNode.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 ## Mark executables and/or libraries for installation
-install(TARGETS ${PROJECT_NAME} s_model_can_node s_model_ethercat_node
+install(TARGETS ${PROJECT_NAME} s_model_ethercat_node
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
